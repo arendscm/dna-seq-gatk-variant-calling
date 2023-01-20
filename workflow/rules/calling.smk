@@ -14,9 +14,22 @@ rule mutect2:
     wrapper:
         "v1.21.3/bio/gatk/mutect"
    
+rule bgzip:
+    input:
+        "results/mutect/{sample}.vcf",
+    output:
+        "results/mutect/{sample}.vcf.gz",
+    params:
+        extra="", # optional
+    threads: 1
+    log:
+        "logs/bgzip/{prefix}.log",
+    wrapper:
+        "v1.21.3-3-gcb96cc40/bio/bgzip"
+
 rule bcftools_merge:
     input:
-        calls=expand("results/mutect/{sample}.vcf", sample=samples.index),
+        calls=expand("results/mutect/{sample}.vcf.gz", sample=samples.index),
     output:
         "results/mutect/all.vcf.gz",
     log:
