@@ -16,7 +16,7 @@ rule gatk_filtermutectcalls:
        
 rule bcftools_merge:
     input:
-        calls=expand("results/mutect/{sample}.vcf.gz", sample=samples.index),
+        calls=expand("results/filtered/{sample}.vcf.gz", sample=samples.index),
     output:
         "results/filtered/all.vcf.gz",
     log:
