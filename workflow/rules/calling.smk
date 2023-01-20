@@ -3,7 +3,7 @@ rule mutect2:
         fasta="resources/genome.fasta",
         map=get_sample_bams,
     output:
-        vcf="results/mutect/{sample}.vcf"
+        vcf="results/mutect/{sample}.vcf.gz"
     message:
         "Testing Mutect2 with {wildcards.sample}"
     threads: 1
@@ -13,19 +13,6 @@ rule mutect2:
         "logs/mutect_{sample}.log",
     wrapper:
         "v1.21.3/bio/gatk/mutect"
-   
-rule bgzip:
-    input:
-        "results/mutect/{sample}.vcf",
-    output:
-        "results/mutect/{sample}.vcf.gz",
-    params:
-        extra="", # optional
-    threads: 1
-    log:
-        "logs/bgzip/{sample}.log",
-    wrapper:
-        "v1.21.3-3-gcb96cc40/bio/bgzip"
 
 rule bcftools_merge:
     input:
@@ -39,4 +26,3 @@ rule bcftools_merge:
         extra="",  # optional parameters for bcftools concat (except -o)
     wrapper:
         "v1.21.4/bio/bcftools/merge"
-
