@@ -16,7 +16,7 @@ rule mutect2:
 
 rule merge_variants:
     input:
-        vcfs=expand("results/mutect/{sample}.vcf", sample=sample.index),
+        vcfs=expand("results/mutect/{sample}.vcf", sample=samples.index),
     output:
         vcf="results/mutect/all.vcf.gz",
     log:
