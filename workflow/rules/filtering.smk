@@ -1,6 +1,6 @@
 rule gatk_filtermutectcalls:
     input:
-        vcf="results/called/all.vcf.gz",
+        vcf="results/mutect/all.vcf.gz",
         ref="resources/genome.fasta",
     output:
         vcf="results/filtered/all.vcf.gz",
