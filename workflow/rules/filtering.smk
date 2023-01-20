@@ -12,17 +12,4 @@ rule gatk_filtermutectcalls:
     resources:
         mem_mb=1024,
     wrapper:
-        "v1.21.3/bio/gatk/filtermutectcalls"
-       
-rule bcftools_merge:
-    input:
-        calls=expand("results/filtered/{sample}.vcf.gz", sample=samples.index),
-    output:
-        "results/filtered/all.vcf.gz",
-    log:
-        "logs/bcf-merge.log"
-    params:
-        uncompressed_bcf=False,
-        extra="",  # optional parameters for bcftools concat (except -o)
-    wrapper:
-        "v1.21.4/bio/bcftools/merge"   
+        "v1.21.3/bio/gatk/filtermutectcalls"   
