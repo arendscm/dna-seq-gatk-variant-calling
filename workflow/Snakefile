@@ -8,7 +8,6 @@ rule all:
     input:
         expand("results/annotated/{sample}.vcf.gz", sample=samples.index),
         "results/qc/multiqc.html",
-        "results/plots/depths.svg",
         "results/plots/allele-freqs.svg",
 
 
