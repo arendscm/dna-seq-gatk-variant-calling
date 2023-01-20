@@ -13,13 +13,17 @@ rule mutect2:
         "logs/mutect_{sample}.log",
     wrapper:
         "v1.21.3/bio/gatk/mutect"
-
-rule merge_variants:
+   
+rule bcftools_merge:
     input:
-        vcfs=expand("results/mutect/{sample}.vcf", sample=samples.index),
+        calls=expand("results/mutect/{sample}.vcf", sample=samples.index),
     output:
-        vcf="results/mutect/all.vcf.gz",
+        "results/mutect/all.vcf.gz",
     log:
-        "logs/picard/merge-vcfs.log",
+        "logs/bcf-merge.log"
+    params:
+        uncompressed_bcf=False,
+        extra="",  # optional parameters for bcftools concat (except -o)
     wrapper:
-        "0.74.0/bio/picard/mergevcfs"
+        "v1.21.4/bio/bcftools/merge"
+
