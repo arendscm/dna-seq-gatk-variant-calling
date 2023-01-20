@@ -23,7 +23,7 @@ rule bgzip:
         extra="", # optional
     threads: 1
     log:
-        "logs/bgzip/{prefix}.log",
+        "logs/bgzip/{sample}.log",
     wrapper:
         "v1.21.3-3-gcb96cc40/bio/bgzip"
 
