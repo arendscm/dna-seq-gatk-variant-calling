@@ -18,7 +18,7 @@ rule merge_variants:
     input:
         vcfs=expand("results/mutect/{sample}.vcf", sample=sample.index),
     output:
-        vcf="results/genotyped/all.vcf.gz",
+        vcf="results/mutect/all.vcf.gz",
     log:
         "logs/picard/merge-vcfs.log",
     wrapper:
