@@ -1,5 +1,5 @@
-samples: config/samples.tsv
-units: config/units.tsv
+samples: input/samples.tsv
+units: input/units.tsv
 
 ref:
   # ensembl species name
