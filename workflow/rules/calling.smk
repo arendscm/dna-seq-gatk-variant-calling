@@ -1,4 +1,4 @@
-    rule mutect2:
+rule mutect2:
     input:
         fasta="resources/genome.fasta",
         map=get_sample_bams,
@@ -16,11 +16,10 @@
 
 rule merge_variants:
     input:
-        vcfs=expand("results/mutect/{sample}.vcf", sample=sample.index)
-        ),
+        vcfs=expand("results/mutect/{sample}.vcf", sample=sample.index),
     output:
         vcf="results/genotyped/all.vcf.gz",
     log:
-        "logs/picard/merge-genotyped.log",
+        "logs/picard/merge-vcfs.log",
     wrapper:
         "0.74.0/bio/picard/mergevcfs"
