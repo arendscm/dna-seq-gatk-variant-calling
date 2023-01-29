@@ -32,7 +32,8 @@ processing:
 
 params:
   gatk:
-    Mutect2: ""
+    Mutect2: 
+      filtermutectcalls: "--max-alt-allele-count 3"
     BaseRecalibrator: ""
     GenotypeGVCFs: ""
     VariantRecalibrator: ""
