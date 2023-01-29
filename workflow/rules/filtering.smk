@@ -7,7 +7,7 @@ rule gatk_filtermutectcalls:
     log:
         "logs/gatk/filter/{sample}.log",
     params:
-        extra=config["params"]["Mutect2"]["filtermutectcalls"],  # optional arguments, see GATK docs
+        extra=config["params"]["gatk"]["Mutect2"]["filtermutectcalls"],  # optional arguments, see GATK docs
         java_opts="",  # optional
     resources:
         mem_mb=1024,
